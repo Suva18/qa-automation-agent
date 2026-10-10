@@ -64,6 +64,8 @@ user prompt -> main prompt router
 - Add four decision-policy files under `qa-agent/decisions/`.
 - Add four reusable artifact templates under `qa-agent/templates/`.
 - Add three project adapters under `qa-agent/projects/`.
+- Add `qa-agent/README.md` as the human-facing operating guide; it is not part of the model's default prompt context.
+- Add a generated `qa-agent/qa-agent.yml` single-file bundle plus a deterministic builder under `qa-agent/scripts/`.
 - No application architecture, runtime flow, or source-of-truth ownership changes are required; `docs/SYSTEM_ARCHITECTURE.md` is therefore unchanged.
 
 ## 7. Risks / Considerations
@@ -83,6 +85,8 @@ user prompt -> main prompt router
 ## 9. Test Plan
 
 - Verify every requested path exists and contains no scaffold placeholders.
+- Verify README examples point to existing files and clearly exclude the README from model context.
+- Parse the generated YAML and verify all routes resolve to embedded skills, references, decisions, and templates.
 - Check all links in `agent.md` and cross-references resolve.
 - Verify the main prompt does not instruct the runtime to preload any reference directory.
 - Verify a narrow request can route to one capability and one output template without loading unrelated files.
